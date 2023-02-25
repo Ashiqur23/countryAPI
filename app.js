@@ -36,7 +36,9 @@ function displayCountry(country){
             <div class="card-body">
                 <h5 class="card-title">Name: ${country.name.common}</h5>
                 <p class="card-text">Population: ${country.population}</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" onclick="ModalDisplay('${country}')"
+                 class="btn btn-primary" data-bs-toggle="modal"
+                 data-bs-target="#exampleModal">
                     Details
                 </button>
             </div>
@@ -46,6 +48,7 @@ function displayCountry(country){
 }
 // modal display
 function ModalDisplay(country){
+    console.log('ok')
     console.log(country)
 }
 // search input
@@ -75,8 +78,6 @@ function display(data){
         `
         countryName.appendChild(li);
 
-
-        /*  */ 
 }
 // call region
 function asiaData(){
