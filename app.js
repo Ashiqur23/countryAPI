@@ -31,15 +31,14 @@ function displayCountry(country){
         contentContainer.textContent =""
         div.classList.add('country');
         div.innerHTML = `
-
         <div class="card" style="width: 18rem;">
             <img src="${country.flags.png}" class="card-img-top shadow-lg" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Name: ${country.name.common}</h5>
                 <p class="card-text">Population: ${country.population}</p>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
+                    Details
+                </button>
             </div>
         </div>
         `;
@@ -59,9 +58,6 @@ function searchBtn(){
     .then(res => res.json())
     .then(data => display(data[0]))
 }
-
-
-
 function display(data){
     console.log(data)
     const countryName = document.getElementById('name-Of-Country');
@@ -71,30 +67,17 @@ function display(data){
         li.classList.add('list')
         li.style.cursor ='pointer';
         li.style.marginTop ='5px';
+        li.addEventListener('click', function(){
+            displayCountry(data)
+        })
         li.innerHTML = `
         ${data?.name?.common}
         `
         countryName.appendChild(li);
 
 
-        /* const contentContainer = document.getElementById('content-container');
-        const div = document.createElement('div');
-        contentContainer.textContent =""
-        div.classList.add('country');
-        div.innerHTML = `
-        <div class="card" style="width: 18rem;">
-            <img src="${data.flags.png}" class="card-img-top shadow-lg" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Name: ${data.name.common}</h5>
-                <p class="card-text">Population: ${data.population}</p>
-                <button class= "btn btn-primary" id="showDetails">Details</button>
-            </div>
-        </div>
-        `;
-        contentContainer.appendChild(div); */
-    
+        /*  */ 
 }
-
 // call region
 function asiaData(){
     countriesData('asia');
