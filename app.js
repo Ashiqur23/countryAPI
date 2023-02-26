@@ -10,7 +10,6 @@ const sideBarCountryName = (countries) => {
     countryName.style.marginTop ='15px';
     countryName.innerHTML = '';
     countries.forEach(country => {
-        // console.log(country)
         const li = document.createElement('li');
         li.classList.add('list')
         li.style.cursor ='pointer';
@@ -36,7 +35,7 @@ function displayCountry(country){
             <div class="card-body">
                 <h5 class="card-title">Name: ${country.name.common}</h5>
                 <p class="card-text">Population: ${country.population}</p>
-                <button type="button" onclick="ModalDisplay('${country}')"
+                <button type="button" id="ModalDisplay(${JSON.stringify(country)})"
                  class="btn btn-primary" data-bs-toggle="modal"
                  data-bs-target="#exampleModal">
                     Details
@@ -54,22 +53,31 @@ function ModalDisplay(country){
 // search input
 function searchBtn(){
     const inputSearch = document.getElementById('search-country')
+    const countryName = document.getElementById('name-Of-Country');
     const name = inputSearch.value;
     inputSearch.value = '';
-    const URL = `https://restcountries.com/v3.1/name/${name}`;
+    if(name === ''){
+        countryName.innerText = 'Please type country name';
+        countryName.style.fontSize = '20px';
+        countryName.style.color = 'red'
+    }
+    else{
+        const URL = `https://restcountries.com/v3.1/name/${name}`;
     fetch(URL)
     .then(res => res.json())
     .then(data => display(data[0]))
+    }
 }
 function display(data){
     console.log(data)
     const countryName = document.getElementById('name-Of-Country');
     countryName.style.marginTop ='15px';
-    countryName.innerHTML = '';
+    countryName.textContent = '';
         const li = document.createElement('li');
         li.classList.add('list')
         li.style.cursor ='pointer';
         li.style.marginTop ='5px';
+        li.style.color ='white';
         li.addEventListener('click', function(){
             displayCountry(data)
         })
