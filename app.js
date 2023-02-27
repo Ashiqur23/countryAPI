@@ -75,20 +75,22 @@ function searchBtn(){
     const inputSearch = document.getElementById('search-country')
     const name = inputSearch.value;
     inputSearch.value = '';
-    let countryA = countriesArray.find(countryN => countryN.toLowerCase() !== name.toLowerCase());
+    let countryA = countriesArray.filter(countryN => countryN.toLowerCase() == name.toLowerCase());
+    // console.log(countryA);
+    // console.log(name)
     if(name === ''){
         countryName.innerText = 'Please type country name';
         countryName.style.fontSize = '20px';
         countryName.style.color = 'red';
     }
-    if(countryA === true){
-        countryName.innerText = 'Please type country name';
+    else if(countryA.length <= 0){
+        countryName.innerText = 'Country not found';
         countryName.style.fontSize = '20px';
         countryName.style.color = 'red';
     }
     else{
-            const country = countriesArray.find(countriesName => name.toLowerCase() === countriesName.toLowerCase()); 
-            displaySearch(country);
+            displaySearch(countryA);
+            
     }
 
    
