@@ -76,8 +76,8 @@ function searchBtn(){
     const name = inputSearch.value;
     inputSearch.value = '';
     let countryA = countriesArray.filter(countryN => countryN.toLowerCase() == name.toLowerCase());
-    // console.log(countryA);
-    // console.log(name)
+    console.log(countryA)
+    console.log(name)
     if(name === ''){
         countryName.innerText = 'Please type country name';
         countryName.style.fontSize = '20px';
@@ -89,13 +89,13 @@ function searchBtn(){
         countryName.style.color = 'red';
     }
     else{
-            displaySearch(countryA);
-            
+            const country = countriesArray.find(countriesName => name.toLowerCase() === countriesName.toLowerCase()); 
+            displaySearch(country);
     }
 
    
 }
-function displaySearch(country){
+function displaySearch(name){
     const countryName = document.getElementById('name-Of-Country');
     countryName.style.marginTop ='15px';
     countryName.textContent = '';
@@ -104,10 +104,12 @@ function displaySearch(country){
         li.style.cursor ='pointer';
         li.style.marginTop ='5px';
         li.style.color ='white';
-        li.innerHTML = `${country}`
+        li.innerHTML = `${name}`
         countryName.appendChild(li);
         li.addEventListener('click', function(){
-            displayCountry(country);
+            fetch(`https://restcountries.com/v3.1/name/${name}`)
+            .then(res => res.json())
+            .then(data => displayCountry(data[0]))
         })
 }
 // call region
