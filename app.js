@@ -62,8 +62,8 @@ const modalDisplay = country => {
     const exampleModalLabel = document.getElementById('exampleModalLabel')
     exampleModalLabel.innerText = `Country name : ${country.name}`;
     const modalBody = document.getElementById('modal-body');
-    modalBody.textContent = ''
     const div = document.createElement('div');
+    modalBody.innerHTML = ''
     div.innerHTML = `
     <img src="${country.flags.png}" class="img-fluid">
     <h6>Region: ${country.region}</h6>
